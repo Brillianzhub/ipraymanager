@@ -80,7 +80,7 @@ class ResendVerificationSerializer(serializers.Serializer):
         if user.is_email_verified:
             raise serializers.ValidationError("Email is already verified.")
 
-        self.context['user'] = user  # pass user to save method
+        self.context['user'] = user  
         return email
 
     def save(self):

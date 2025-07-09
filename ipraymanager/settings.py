@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'accounts',
     'notes',
-    'sermons'
+    'sermons',
+    'events'
 ]
 
 MIDDLEWARE = [

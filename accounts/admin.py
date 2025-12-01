@@ -11,7 +11,7 @@ class UserAdmin(BaseUserAdmin):
     list_display = (
         'email', 'first_name', 'last_name',
         'is_email_verified', 'email_verification_token', 'token_created_at',
-        'is_staff'
+        'is_staff', 'is_allowed'
     )
     list_filter = ('is_staff', 'is_superuser', 'is_email_verified')
     search_fields = ('email', 'first_name', 'last_name')
@@ -25,7 +25,7 @@ class UserAdmin(BaseUserAdmin):
             'is_email_verified', 'email_verification_token', 'token_created_at'
         )}),
         ('Permissions', {
-            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'is_allowed', 'groups', 'user_permissions')
         }),
     )
 

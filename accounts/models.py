@@ -11,7 +11,12 @@ class UserManager(BaseUserManager):
             raise ValueError("The Email field is required")
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-        user.set_password(password)
+
+        if password:
+            user.set_password(password)
+        else:
+            user.set_unusable_password()
+
         user.save()
         return user
 
@@ -37,6 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True, null=True)
 
     is_active = models.BooleanField(default=True)
+    is_allowed = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'

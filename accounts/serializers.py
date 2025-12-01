@@ -33,6 +33,19 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+class MeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'email',
+            'is_staff',
+            'is_allowed',
+            'is_superuser',
+        ]
+
+
 class VerifyEmailSerializer(serializers.Serializer):
     email = serializers.EmailField()
     token = serializers.CharField(max_length=5)
@@ -80,7 +93,7 @@ class ResendVerificationSerializer(serializers.Serializer):
         if user.is_email_verified:
             raise serializers.ValidationError("Email is already verified.")
 
-        self.context['user'] = user  
+        self.context['user'] = user
         return email
 
     def save(self):

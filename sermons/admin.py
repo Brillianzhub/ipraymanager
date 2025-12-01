@@ -13,4 +13,5 @@ class VideoAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'preacher',
                     'source', 'date_published')
     list_filter = ('category', 'source', 'date_published')
-    search_fields = ('title', 'preacher', 'source', 'url')
+    search_fields = ('title', 'description', "preacher__name",
+                     "preacher__ministry", "category__name", 'source', 'url')
